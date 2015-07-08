@@ -1,29 +1,22 @@
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.Iterator;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-/**
- *
- * @author zain Aftab
- */
 public class email_sender {
 
     public void read_file() {
         try {
             FileInputStream file = new FileInputStream(new File("howtodoinjava_demo.xlsx"));
-
             //Create Workbook instance holding reference to .xlsx file
             XSSFWorkbook workbook = new XSSFWorkbook(file);
-
             //Get first/desired sheet from the workbook
             XSSFSheet sheet = workbook.getSheetAt(0);
-
             //Iterate through each rows one by one
             Iterator<Row> rowIterator = sheet.iterator();
             while (rowIterator.hasNext()) {
@@ -36,10 +29,10 @@ public class email_sender {
                     //Check the cell type and format accordingly
                     switch (cell.getCellType()) {
                         case Cell.CELL_TYPE_NUMERIC:
-                            System.out.print(cell.getNumericCellValue() + "t");
+                            System.out.print(cell.getNumericCellValue() + "\t");
                             break;
                         case Cell.CELL_TYPE_STRING:
-                            System.out.print(cell.getStringCellValue() + "t");
+                            System.out.print(cell.getStringCellValue() + "\t");
                             break;
                     }
                 }
